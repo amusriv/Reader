@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+function f()
+{ alert("I've been hit");
+	var res="";
+  /*$.getJSON("/reader", function(result)
+    		  { 
+				res=JSON.parse(result);
+    	  		
+    		  }
+      
+      application/json);  
+	return res.url;*/
+}
+</script>
+
+<body> <a href="#" onclick="f()"> Click me please. </a>
+</body>
+
+</html>

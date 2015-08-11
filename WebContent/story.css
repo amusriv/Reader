@@ -1,0 +1,38 @@
+
+span
+{
+	text-align:center;
+	font-family: 'Droid Sans', sans-serif;
+	left: 25%;
+	margin-left: auto;
+    margin-right: auto;
+    line-height: 200px;
+    margin: auto;
+    margin-top: -100px;
+    position: absolute;
+    top: 40%;
+    width: 50%;
+	font-size:70;
+	color: #8cbed6;	
+	border-style: solid;
+    border-width: 5px;
+}
+
+h5 {
+  font-size: 45px;
+}
+h1, h2, h3, h4, h5 {
+  text-shadow: 2px 2px 4px #999;
+  text-align: center;
+  margin: auto;
+  color: #8cbed6;
+} 
+user agent stylesheet h5 {
+  display: block;
+  font-size: 0.83em;
+  -webkit-margin-before: 1.67em;
+  -webkit-margin-after: 1.67em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+}
