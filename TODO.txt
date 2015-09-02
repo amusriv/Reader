@@ -1,1 +1,4 @@
 - Write ToDo.
+1. Mock page is up. Decide how exactly we want it to look and make the page.
+2. Add js functionality to page after it is made.
+(These should be like sprint tasks :P)
