@@ -21,6 +21,8 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+
+		<!--Header begins here-->
     <header id="top" class="navbar navbar-static-top bs-docs-nav" role="banner">
       <div class="container">
         <div class="navbar-header">
@@ -48,19 +50,42 @@
         </nav>
       </div>
     </header>
+		<!--Header ends here-->
+
+		<!--Nav Tab are here-->
     <div class="container">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs" rolei="tablist">
         <li role="presentation" class=active">
-          <a href="#">Read</a>
+          <a href="#Read" aria-controls="Read" role="tab" data-toggle="tab">Read</a>
         </li>
         <li role="presentation">
-          <a href="#">Watch</a>
+          <a href="#Watch" aria-controls="Watch" role="tab" data-toggle="tab">Watch</a>
         </li>
         <li role="presentation">
-          <a href="#">Listen</a>
+          <a href="#Listen" aria-controls="Listen" role="tab" data-toggle="tab">Listen</a>
         </li>
       </ul>
     </div>
+		<!--Nav Tab done-->
+
+		<!--Tab Panes-->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="Read">
+				<div class="container">
+					<p>This is the Read Pane</p>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="Watch">
+				<div class="container">
+					<p>This is the Watch Pane</p>
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="Listen">
+				<div class="container">
+					<p>This is the Listen Pane</p>
+				</div>
+			</div>
+		</div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
