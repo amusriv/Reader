@@ -1,5 +1,10 @@
+/* Hey Pushkar, here's what's happening: I'm storing a cookie with the offset, step, and count (no. of times the 
+user has visited) on each visit. The offset and count are generated only for the first time, the count and cookie
+expiry are written each time. There's a lot of redundant code here (and a lot of useless sysouts), I'll remove them 
+once you've had a look.
+*/
 function f1() 
-	        {	
+	        {	alert("this is happening!!!");
 				var stories=["http://www.readbookonline.net/readOnLine/54197/","http://www.eldritchpress.org/ac/jr/041.htm","http://www.vcu.edu/engweb/webtexts/hour/","http://www.fsgworkinprogress.com/2011/05/orientation-by-daniel-orozco/","http://www.newyorker.com/archive/1948/05/15/1948_05_15_031_TNY_CARDS_000214135?currentPage=3","http://www.npr.org/programs/death/readings/stories/bart.html","http://www-rohan.sdsu.edu/faculty/dunnweb/rprnts.omelas.pdf","http://www.gutenberg.org/files/26967/26967-h/26967-h.htm","http://www.gutenberg.org/files/25078/25078-h/25078-h.htm","http://www.hungermtn.org/a-lack-of-order-in-the-floating-object-room/","http://web.ics.purdue.edu/~rebeccal/lit/238f11/pdfs/HappyEndings_Atwood.pdf",
 				"http://www.esquire.com/fiction/fiction/ray-bradbury-last-night-of-the-world-0251"
 				,"http://www.url-der.org/a_clean_well_lighted_place.pdf"
@@ -46,9 +51,114 @@ function f1()
 				"http://squid314.livejournal.com/293753.html",
 				"http://www.newyorker.com/fiction/features/2012/10/15/121015fi_fiction_saunders?currentPage=all",
 				];
-				var i=Math.floor(Math.random() * stories.length);
+			
+			
+			
+				var offset = 0; 
+				var step = 0;
+				var count = 0;		
+				var skipRebaking = false;
+				alert("offstep step and count at the beginning of time are: " + offset + " "+ step + " " + count);
+				var checkKuki = check();
+				if (checkKuki == true) {
+				alert("Check cookie was true, let the eating begin.");	
+				var offstep = eat();
+				//alert("The cookie read was: " + offstep.toString());
+				offset = parseInt(offstep["offsetKey"]);
+				step = parseInt(offstep["stepKey"]);	
 				
-				//alert(stories[i]);
+				count = parseInt(offstep["countKey"]); 
+				alert("offstep step and count inside if trueCookie are: " + offset + " "+ step + " " + count);
+
+				}
+				
+				
+				else {
+				alert("Check cookie was false, let the eating begin.");		
+				skipRebaking = true; bake(stories.length, 0); 
+				var offstep = eat();
+				offset = parseInt(offstep["offsetKey"]);
+				step = parseInt(offstep["stepKey"]);	
+				//The count value written is 1 greater than the current count value which needs to be used
+				count = parseInt(offstep["countKey"])-1; //will evaluate to 0 every time. 
+				alert("offstep step and count inside if falseCookie are: " + offset + " "+ step + " " + count);
+				}
+				//if check() {count = offstep["countKey"]; } else count = "0";
+				alert("Offset is: " + offset + " Step is: " + step + " Count is: " + count);
+				
+				//var randnum=Math.floor(Math.random() * stories.length);
+				var i = (offset + (step * count)) % stories.length;
+				alert("I is: " + i);
 				document.getElementById("line").href=stories[i]; 
+				if (skipRebaking == false) {bake(stories.length, count);}
 				
-};
+}
+
+function bake(tot, count) {
+	
+	var offset=0;
+	var step=0; alert("step is:" + step);
+	//var count=Math.floor(Math.random() * tot); alert("count is:" + count);
+	var d = new Date();
+	d.setTime(d.getTime() + (100*24*60*60*1000));
+	var expires = "expires="+d.toUTCString(); alert("expires is:"+expires);
+	var countKuki = "count=" + (count+1);
+	if (count ==0)
+	{
+		offset=Math.floor(Math.random() * tot); 
+		step=Math.floor(Math.random() * tot); alert("step is:" + step);	
+		var offsetKuki = "offset=" + offset;
+		var stepKuki = "step=" + step;
+		document.cookie = offsetKuki;
+		document.cookie = stepKuki;
+	}
+	
+	document.cookie = countKuki;
+	document.cookie = expires;
+	//var stepKuki = alert("step kuki: "+stepKuki);
+	//document.cookie = stepKuki;
+	alert("Writing cookie: " + document.cookie);
+	
+}
+
+function eat() {
+	
+	var offset = 0;
+	var step = 0;
+	var count = 0;
+	var offsetString = "offset=";
+	var stepString = "step=";
+	var countString = "count=";
+	var kuki = document.cookie.split(';');
+	 for(var i=0; i<kuki.length; i++) {
+        var c = kuki[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(offsetString) == 0) offset = parseInt(c.substring(offsetString.length,c.length));
+    }
+	
+	for(var i=0; i<kuki.length; i++) {
+        var c = kuki[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(stepString) == 0) step = parseInt(c.substring(stepString.length,c.length));
+    }
+	
+	for(var i=0; i<kuki.length; i++) {
+        var c = kuki[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(countString) == 0) count = parseInt(c.substring(countString.length,c.length));
+    }
+	//alert ("returning: " + offsetString + ":" + offset + " " + stepString + ":" + step)
+	var ret = {	offsetKey: offset, stepKey: step, countKey: count};
+	alert("returning: " + ret);
+	return ret;
+	
+	//return (offsetString + offset + " " + stepString + step);
+}
+
+function check() {
+	
+	
+	if (document.cookie.indexOf("offset") >= 0) return true;
+	else return false;
+	
+}
