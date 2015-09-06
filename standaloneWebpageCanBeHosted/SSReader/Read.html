@@ -1,15 +1,19 @@
 <html>
 <head>
 <title>I want to read a story!</title>
+<link href="story.css" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Bitte' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="Read.js"></script>	
+
 </head>
 
-<link href="story.css" rel="stylesheet" type="text/css">
-			<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
-			<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-			<script type="text/javascript" src="Read.js"></script>	
-			<a href="#" onclick="return f1();" id="line" target="_blank"><span>I want to read a story!</span></a>
 
+			<a href="#" id="readButton" target="_blank"><span>I want to read a story!</span></a>
 
+<script type="text/javascript">
+document.getElementById("readButton").addEventListener("click",f1,false);
+</script> 
 
 <body id="bd">
 

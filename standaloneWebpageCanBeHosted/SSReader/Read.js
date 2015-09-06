@@ -4,7 +4,8 @@ expiry are written each time. There's a lot of redundant code here (and a lot of
 once you've had a look.
 */
 function f1() 
-	        {	alert("this is happening!!!");
+	        {	
+				alert("this is happening!!!");
 				var stories=["http://www.readbookonline.net/readOnLine/54197/","http://www.eldritchpress.org/ac/jr/041.htm","http://www.vcu.edu/engweb/webtexts/hour/","http://www.fsgworkinprogress.com/2011/05/orientation-by-daniel-orozco/","http://www.newyorker.com/archive/1948/05/15/1948_05_15_031_TNY_CARDS_000214135?currentPage=3","http://www.npr.org/programs/death/readings/stories/bart.html","http://www-rohan.sdsu.edu/faculty/dunnweb/rprnts.omelas.pdf","http://www.gutenberg.org/files/26967/26967-h/26967-h.htm","http://www.gutenberg.org/files/25078/25078-h/25078-h.htm","http://www.hungermtn.org/a-lack-of-order-in-the-floating-object-room/","http://web.ics.purdue.edu/~rebeccal/lit/238f11/pdfs/HappyEndings_Atwood.pdf",
 				"http://www.esquire.com/fiction/fiction/ray-bradbury-last-night-of-the-world-0251"
 				,"http://www.url-der.org/a_clean_well_lighted_place.pdf"
@@ -89,7 +90,7 @@ function f1()
 				//var randnum=Math.floor(Math.random() * stories.length);
 				var i = (offset + (step * count)) % stories.length;
 				alert("I is: " + i);
-				document.getElementById("line").href=stories[i]; 
+				document.getElementById("readButton").href=stories[i]; 
 				if (skipRebaking == false) {bake(stories.length, count);}
 				
 }
@@ -97,7 +98,7 @@ function f1()
 function bake(tot, count) {
 	
 	var offset=0;
-	var step=0; alert("step is:" + step);
+	var step=0; //alert("step is:" + step);
 	//var count=Math.floor(Math.random() * tot); alert("count is:" + count);
 	var d = new Date();
 	d.setTime(d.getTime() + (100*24*60*60*1000));
@@ -107,14 +108,15 @@ function bake(tot, count) {
 	{
 		offset=Math.floor(Math.random() * tot); 
 		step=Math.floor(Math.random() * tot); alert("step is:" + step);	
-		var offsetKuki = "offset=" + offset;
-		var stepKuki = "step=" + step;
-		document.cookie = offsetKuki;
-		document.cookie = stepKuki;
+		var offsetKuki = "offset=" + offset; alert("Offset cookie is: " + offsetKuki);
+		var stepKuki = "step=" + step; alert("Step cookie is: " + stepKuki);
+		document.cookie = offsetKuki; alert("cookie is: " + document.cookie);
+		document.cookie = stepKuki; alert("cookie at 2  is: " + document.cookie);
 	}
-	
+	var path = "path=" + "/";
 	document.cookie = countKuki;
 	document.cookie = expires;
+	document.cookie= path;
 	//var stepKuki = alert("step kuki: "+stepKuki);
 	//document.cookie = stepKuki;
 	alert("Writing cookie: " + document.cookie);
